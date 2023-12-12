@@ -1,5 +1,6 @@
 /* See LICENSE file for copyright and license details. */
 
+#include <X11/XF86keysym.h>
 /* appearance */
 static const unsigned int borderpx  = 1;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
@@ -16,6 +17,14 @@ static const char *colors[][3]      = {
 	/*               fg         bg         border   */
 	[SchemeNorm] = { col_gray3, col_gray1, col_gray2 },
 	[SchemeSel]  = { col_gray4, col_cyan,  col_cyan  },
+};
+static const unsigned int baralpha = 0xd0;
+static const unsigned int borderalpha = OPAQUE;
+
+static const unsigned int alphas[][3]      = {
+  /*               fg      bg        border*/
+  [SchemeNorm] = { OPAQUE, baralpha, borderalpha },
+	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
 /* tagging */
@@ -45,7 +54,7 @@ static const Layout layouts[] = {
 };
 
 /* key definitions */
-#define MODKEY Mod1Mask
+#define MODKEY Mod4Mask
 #define TAGKEYS(KEY,TAG) \
 	{ MODKEY,                       KEY,      view,           {.ui = 1 << TAG} }, \
 	{ MODKEY|ControlMask,           KEY,      toggleview,     {.ui = 1 << TAG} }, \
@@ -94,6 +103,10 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
+  { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
+  { NULL,                         XK_Print,  spawn,          {.v = flameshot}},
+  { NULL,                         XF86XK_MonBrightnessUp, spawn, {.v = brightness_inc}},
+  { NULL,                         XF86XK_MonBrightnessDown, spawn, {.v = brightness_dec}},
 };
 
 /* button definitions */
