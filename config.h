@@ -73,7 +73,7 @@ static const Key keys[] = {
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY,                       XK_Return, spawn,          {.v = termcmd } },
   { MODKEY,                       XK_b,      spawn,          {.v = browser }},
-//  { MODKEY,                       XK_b,      togglebar,      {0} },
+  { MODKEY|ShiftMask,             XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } }, // Change focused window
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
 	{ MODKEY,                       XK_i,      incnmaster,     {.i = +1 } }, // Increase windows in master
@@ -108,6 +108,7 @@ static const Key keys[] = {
   { NULL,                         XK_Print,  spawn,          {.v = flameshot}},
   { NULL,                         XF86XK_MonBrightnessUp, spawn, {.v = brightness_inc}},
   { NULL,                         XF86XK_MonBrightnessDown, spawn, {.v = brightness_dec}},
+  { MODKEY,                       XK_s,      togglesticky,    {0}},
 };
 
 /* button definitions */
