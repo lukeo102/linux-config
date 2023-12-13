@@ -27,6 +27,9 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
+static const XPoint stickyicon[]    = { {0,0}, {4,0}, {4,8}, {2,6}, {0,8}, {0,0} }; /* represents the icon as an array of vertices */
+static const XPoint stickyiconbb    = {4,8};	/* defines the bottom right corner of the polygon's bounding box (speeds up scaling) */
+
 /* tagging */
 static const char *tags[] = { "1", "2", "3", "4", "5", "6", "7", "8", "9" };
 
@@ -105,9 +108,9 @@ static const Key keys[] = {
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
   { MODKEY|ShiftMask,             XK_l,      spawn,          {.v = slock } },
-  { NULL,                         XK_Print,  spawn,          {.v = flameshot}},
-  { NULL,                         XF86XK_MonBrightnessUp, spawn, {.v = brightness_inc}},
-  { NULL,                         XF86XK_MonBrightnessDown, spawn, {.v = brightness_dec}},
+  { 0,                            XK_Print,  spawn,          {.v = flameshot}},
+  { 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightness_inc}},
+  { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightness_dec}},
   { MODKEY,                       XK_s,      togglesticky,    {0}},
 };
 
