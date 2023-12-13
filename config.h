@@ -52,10 +52,10 @@ static char lockfile[] = "/tmp/dwm.lock";
 
 static const Layout layouts[] = {
 	/* symbol     arrange function */
-	{ "[]=",      tile },    /* first entry is default */
+	{ "[][]=",    tilewide },
+  { "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
-  { "[][]=",    tilewide },
 };
 
 /* key definitions */
