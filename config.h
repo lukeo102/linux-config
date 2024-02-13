@@ -114,6 +114,9 @@ static const Key keys[] = {
   { 0,                            XF86XK_MonBrightnessUp, spawn, {.v = brightness_inc}},
   { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = brightness_dec}},
   { MODKEY,                       XK_s,      togglesticky,    {0}},
+  { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = increase_volume}},
+  { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = decrease_volume}},
+  { 0,                            XF86XK_AudioMute, spawn,    {.v = toggle_mute}},
 };
 
 /* button definitions */

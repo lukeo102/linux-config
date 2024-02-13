@@ -6,4 +6,6 @@ static const char *slock[] = { "slock", NULL };
 static const char *flameshot[] = { "flameshot", "gui", NULL };
 static const char *brightness_inc[] = {"xbacklight", "-inc", "10", NULL};
 static const char *brightness_dec[] = {"xbacklight", "-dec", "10", NULL}; 
-
+static const char *increase_volume[] = {"pamixer", "-i", "5", NULL};
+static const char *decrease_volume[] = {"pamixer", "-d", "5", NULL};
+static const char *toggle_mute[] = {"pamixer", "-t", NULL};
