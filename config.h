@@ -71,7 +71,7 @@ static const struct arg args[] = {
   { cpu_perc,         " %s% | ",           NULL },
   { ram_perc,         " %s% | ",           NULL },
   { disk_perc,        "󱛟 %s% | ",           "/" },
-  { run_command,      " %s | ",         "pamixer --get-volume-human" },
+  { run_command,      "  %s | ",           "pamixer --get-volume-human" },
   { get_battery_icon, "%s",                 NULL },
   { battery_perc,     " %s% | ",            "BAT0" },
   { datetime,         "%s",                 "%a %d %b %T" },
