@@ -2,7 +2,7 @@
 
 #include <X11/XF86keysym.h>
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
 static const int topbar             = 1;        /* 0 means bottom bar */
@@ -117,6 +117,10 @@ static const Key keys[] = {
   { 0,                            XF86XK_AudioRaiseVolume, spawn, {.v = increase_volume}},
   { 0,                            XF86XK_AudioLowerVolume, spawn, {.v = decrease_volume}},
   { 0,                            XF86XK_AudioMute, spawn,    {.v = toggle_mute}},
+  { 0,				  XF86XK_AudioPlay,	   spawn,	{.v = audio_play} },
+  { 0,				  XF86XK_AudioNext,	   spawn,	{.v = audio_next} },
+  { 0,				  XF86XK_AudioPrev,	   spawn,	{.v = audio_prev} },
+  { ShiftMask,                            XK_Print,  spawn,          {.v = save_replay}},
 };
 
 /* button definitions */
