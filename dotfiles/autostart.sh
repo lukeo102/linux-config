@@ -1,0 +1,37 @@
+#!/bin/bash
+
+# Gaming optimisations
+export LD_BIND_NOW=1
+
+# Easyeffects - noise suppression system wide
+easyeffects --gapplication-service &
+
+# Picom - X11 compositor
+picom &
+
+# SSH
+if ! pgrep -u "$USER" ssh-agent >/dev/null; then
+  ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
+fi
+if [[ ! -f "$SSH_AUTH_SOCK" ]]; then
+  source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
+fi
+eval $(ssh-agent)
+ssh-add /home/luke/.ssh/id_rsa
+
+# Enviroment variables
+export EDITOR="nvim" &
+
+# Display
+xrandr --output HDMI-0 --mode 2560x1440 --pos 0x0 --rotate inverted --output DP-0 --off --output DP-1 --off --output DP-4 --primary --mode 2560x1440 --pos 0x1440 --rotate normal --output DP-3 --off --output DP-5 --off --output DP-4 --off &
+xset -dpms
+xset s off
+xrdb -merge $HOME/.Xresources
+
+# Replay
+gpu-screen-recorder -w DP-4 -c mp4 -q very_high -k auto -ac opus -f 60 -cursor yes -cr full -r 1200 -o /home/luke/Videos -a alsa_output.pci-0000_0c_00.3.analog-stereo.monitor | alsa_input.usb-0c76_USB_Headphone_Set-00.mono-fallback &
+
+# Desktop stuff
+feh --bg-fill --randomize $HOME/.local/installs/dwm/backgrounds/ &
+slstatus &
+exec dwm

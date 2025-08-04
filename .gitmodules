@@ -17,3 +17,7 @@
 	path = dotfiles/zsh
 	url = https://github.com/lukeo102/linux-config.git
 	branch = zsh
+[submodule "dotfiles/nvim"]
+	path = dotfiles/nvim
+	url = https://github.com/lukeo102/linux-config.git
+	branch = nvim
