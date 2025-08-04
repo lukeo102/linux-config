@@ -1,5 +1,9 @@
 #!/bin/sh
 
+# config
+LOCATION="$HOME/.local"
+USER="luke"
+
 # packages
 PACKAGES_BASE="base-devel sudo make zsh xorg-server firefox git kitty linux-lts-headers linux-lts"
 PACKAGES_DRIVERS="nvidia-open-dkms mesa vulkan-icd-loader xf86-video-vesa"
@@ -16,9 +20,14 @@ $PACMAN
 exit 0
 
 # user
-useradd -G wheel -p t luke
-passwd -d luke
-su luke
+useradd -G wheel -p t $USER
+passwd -d $USER
+su $USER
+
+# cloning
+cd $LOCATION
+git clone --recursive-submodules -j4 --depth 1 https://github.com/lukeo102/linux-config.git env
+cd env
 
 # audio
 system-ctl --user enable pipewire
