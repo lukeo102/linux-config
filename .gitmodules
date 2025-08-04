@@ -1,0 +1,19 @@
+[submodule "programs/dwm"]
+	path = programs/dwm
+	url = https://github.com/lukeo102/linux-config.git
+	branch = dwm-desktop
+[submodule "programs/dmenu"]
+	path = programs/dmenu
+	url = https://github.com/lukeo102/linux-config.git
+	branch = dmenu
+[submodule "programs/slstatus"]
+	path = programs/slstatus
+	url = https://github.com/lukeo102/linux-config.git
+	branch = slstatus
+[submodule "programs/paru"]
+	path = programs/paru
+	url = https://github.com/Morganamilo/paru.git
+[submodule "dotfiles/zsh"]
+	path = dotfiles/zsh
+	url = https://github.com/lukeo102/linux-config.git
+	branch = zsh
