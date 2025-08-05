@@ -47,7 +47,7 @@ if [ "$1" != "root-done" ]; then
 fi
 
 if [ "$(whoami)" != "$USER" ]; then
-  su $user -c "$0 root-done"
+  su $USER -c "$0 root-done"
   exit 0
 fi
 
