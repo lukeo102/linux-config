@@ -30,7 +30,7 @@ if [ "$1" != "root-done" ]; then
     echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/nopass
     
     # user
-    if [ $(cat /etc/passwd | grep "$USER") ]; then
+    if ! [ $(cat /etc/passwd | grep "$USER") ]; then
         useradd -G wheel -p t $USER
         passwd -d $USER
     fi
