@@ -35,7 +35,7 @@ if [ "$1" != "root-done" ]; then
         passwd -d $USER
     fi
 
-    if [ "$1" != "run-as-root" ]; then
+    if [ "$1" == "run-as-root" ]; then
       exit 0
     fi
 
