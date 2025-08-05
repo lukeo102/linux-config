@@ -20,6 +20,9 @@ PACMAN="pacman -Sy --noconfirm --needed $PACKAGES"
 if [ "$1" != "root-done" ]; then
   if [ "$(whoami)" == "root" ]; then
   
+    # enable multilib
+    sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
+
     # packages
     $PACMAN
 
