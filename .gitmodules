@@ -12,7 +12,7 @@
 	branch = slstatus
 [submodule "programs/paru"]
 	path = programs/paru
-	url = https://github.com/Morganamilo/paru.git
+	url = https://aur.archlinux.org/paru.git
 [submodule "dotfiles/zsh"]
 	path = dotfiles/zsh
 	url = https://github.com/lukeo102/linux-config.git
