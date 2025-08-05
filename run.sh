@@ -87,7 +87,7 @@ DOTFILES=$LOCATION/env/dotfiles
 
 ln -s $DOTFILES/zsh/.oh-my-zsh ~/
 ln -s $DOTFILES/zsh/.zshrc ~/
-sudo chsh -s $(which zsh) luke
+sudo chsh -s $(which zsh) $USER
 
 AUTOSTART_LOCATION="$HOME/.local/share/dwm/"
 mkdir -p $AUTOSTART_LOCATION
