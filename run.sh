@@ -15,7 +15,14 @@ PACKAGES_AUR="zenergy-dkms-git"
 PACKAGES="$PACKAGES_BASE $PACKAGES_DRIVERS $PACKAGES_WIRELESS $PACKAGES_AUDIO $PACKAGES_GAMES $PACKAGES_MISC"
 
 PACMAN="pacman -Sy --noconfirm --needed $PACKAGES"
-echo "$0"
+
+if [ "$0" == "sh" ]; then
+  RUN_CMD=$1
+else
+  RUN_CMD=$0
+fi
+echo $RUN_CMD
+
 # root commands
 if [ "$1" != "root-done" ]; then
   if [ "$(whoami)" == "root" ]; then
@@ -41,13 +48,13 @@ if [ "$1" != "root-done" ]; then
 
   else
 
-    su root -c "$0 run-as-root"
+    su root -c "$RUN_CMD run-as-root"
 
   fi
 fi
 
 if [ "$(whoami)" != "$USER" ]; then
-  su $user -c "$0 root-done"
+  su $user -c "$RUN_CMD root-done"
   exit 0
 fi
 
