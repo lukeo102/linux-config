@@ -35,11 +35,13 @@ if [ "$1" != "root-done" ]; then
         passwd -d $USER
     fi
 
-    exit 0
+    if [ "$1" != "run-as-root" ]; then
+      exit 0
+    fi
 
   else
 
-    su root -c "$0"
+    su root -c "$0 run-as-root"
 
   fi
 fi
