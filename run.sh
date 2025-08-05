@@ -19,7 +19,7 @@ PACMAN="pacman -Sy --noconfirm --needed $PACKAGES"
 # root commands
 if [ "$1" != "root-done" ]; then
   if [ "$(whoami)" == "root" ]; then
-  
+
     # enable multilib
     sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
@@ -27,12 +27,12 @@ if [ "$1" != "root-done" ]; then
     $PACMAN
 
     # sudo
-    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/nopass
-    
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" >/etc/sudoers.d/nopass
+
     # user
     if ! [ $(cat /etc/passwd | grep "$USER") ]; then
-        useradd -G wheel -m -p t $USER
-        passwd -d $USER
+      useradd -G wheel -m -p t $USER
+      passwd -d $USER
     fi
 
     if [ "$1" == "run-as-root" ]; then
@@ -87,15 +87,16 @@ DOTFILES=$LOCATION/env/dotfiles
 
 ln -s $DOTFILES/zsh/.oh-my-zsh ~/
 ln -s $DOTFILES/zsh/.zshrc ~/
-sudo chshell -s $(which zsh) luke
+sudo chsh -s $(which zsh) luke
 
 AUTOSTART_LOCATION="$HOME/.local/share/dwm/"
 mkdir -p $AUTOSTART_LOCATION
 ln -s $DOTFILES/autostart.sh $AUTOSTART_LOCATION
 
+mkdir -p ~/.config
 ln -s $DOTFILES/nvim ~/.config/nvim
 
-chmod +x xinitrc
+chmod +x $DOTFILES/xinitrc
 ln -s $DOTFILES/xinitrc ~/.xinitrc
 
 # AUR packages
