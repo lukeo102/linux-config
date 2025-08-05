@@ -15,7 +15,7 @@ PACKAGES_AUR="zenergy-dkms-git"
 PACKAGES="$PACKAGES_BASE $PACKAGES_DRIVERS $PACKAGES_WIRELESS $PACKAGES_AUDIO $PACKAGES_GAMES $PACKAGES_MISC"
 
 PACMAN="pacman -Sy --noconfirm --needed $PACKAGES"
-
+echo "$0"
 # root commands
 if [ "$1" != "root-done" ]; then
   if [ "$(whoami)" == "root" ]; then
