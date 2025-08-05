@@ -31,7 +31,7 @@ if [ "$1" != "root-done" ]; then
     
     # user
     if ! [ $(cat /etc/passwd | grep "$USER") ]; then
-        useradd -G wheel -p t $USER
+        useradd -G wheel -m -p t $USER
         passwd -d $USER
     fi
 
