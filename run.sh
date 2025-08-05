@@ -5,7 +5,7 @@ LOCATION="$HOME/.local"
 USER="luke"
 
 # packages
-PACKAGES_BASE="base-devel sudo make zsh xorg-server xorg-xinit firefox git kitty kitty-terminfo kitty-shell-integration linux-lts-headers linux-lts greetd"
+PACKAGES_BASE="base-devel sudo make zsh xorg-server xorg-xinit firefox git kitty kitty-terminfo kitty-shell-integration linux-lts-headers linux-lts greetd rust"
 PACKAGES_DRIVERS="nvidia-open-dkms mesa vulkan-icd-loader xf86-video-vesa"
 PACKAGES_WIRELESS="bluez bluez-libs blueberry iwd"
 PACKAGES_AUDIO="pipewire pipewire-pulse pipewire-jack pipewire-alsa pipewire-audio wireplumber libwireplumber pavucontrol easyeffects"
@@ -71,7 +71,7 @@ systemctl --user enable wireplumber
 cd programs
 
 cd paru
-makepkg -si
+makepkg -si --no-confirm
 
 cd ../dwm
 sudo make clean install
