@@ -5,7 +5,7 @@ LOCATION="$HOME/.local"
 USER="luke"
 
 # packages
-PACKAGES_BASE="base-devel sudo make zsh xorg-server firefox git kitty linux-lts-headers linux-lts greetd"
+PACKAGES_BASE="base-devel sudo make zsh xorg-server firefox git kitty kitty-terminfo kitty-shell-integration linux-lts-headers linux-lts greetd"
 PACKAGES_DRIVERS="nvidia-open-dkms mesa vulkan-icd-loader xf86-video-vesa"
 PACKAGES_WIRELESS="bluez bluez-libs blueberry iwd"
 PACKAGES_AUDIO="pipewire pipewire-pulse pipewire-jack pipewire-alsa pipewire-audio wireplumber libwireplumber pavucontrol easyeffects"
@@ -16,26 +16,41 @@ PACKAGES="$PACKAGES_BASE $PACKAGES_DRIVERS $PACKAGES_WIRELESS $PACKAGES_AUDIO $P
 
 PACMAN="pacman -Sy --noconfirm --needed $PACKAGES"
 
-if [ $(whoami) -ne root ]; then
-  su root
+# root commands
+if [ "$1" != "root-done" ]; then
+  if [ "$(whoami)" == "root" ]; then
+  
+    # packages
+    $PACMAN
+
+    # sudo
+    echo "%wheel ALL=(ALL:ALL) NOPASSWD: ALL" > /etc/sudoers.d/nopass
+    
+    # user
+    if [ $(cat /etc/passwd | grep "$USER") ]; then
+        useradd -G wheel -p t $USER
+        passwd -d $USER
+    fi
+
+    exit 0
+
+  else
+
+    su root -c "$0"
+
+  fi
 fi
 
-echo "$PACMAN"
-$PACMAN
-exit 0
-
-# user
-if [ $(cat /etc/passwd | grep "$USER") ]; then
-  useradd -G wheel -p t $USER
-  passwd -d $USER
+if [ "$(whoami)" != "$USER" ]; then
+  su $user -c "$0 root-done"
+  exit 0
 fi
-su $USER
 
 # cloning
 mkdir -p $LOCATION
 cd $LOCATION
 rm -rf ./env
-git clone --recursive-submodules -j4 --depth 1 https://github.com/lukeo102/linux-config.git env
+git clone --recurse-submodules -j4 --depth 1 -b main https://github.com/lukeo102/linux-config.git env
 cd env
 
 # autologin
@@ -64,16 +79,20 @@ sudo make clean install
 
 # dotfiles
 cd ../../dotfiles
+PWD=$(pwd)
 
-ln -s zsh/.oh-my-zsh ~/
-ln -s zsh/.zshrc ~/
+ln -s $PWD/zsh/.oh-my-zsh ~/
+ln -s $PWD/zsh/.zshrc ~/
 sudo chshell -s $(which zsh) luke
 
 AUTOSTART_LOCATION="$HOME/.local/share/dwm/"
 mkdir -p $AUTOSTART_LOCATION
-ln -s autostart.sh $AUTOSTART_LOCATION
+ln -s $PWD/autostart.sh $AUTOSTART_LOCATION
 
-ln -s nvim ~/.config/nvim
+ln -s $PWD/nvim ~/.config/nvim
 
 chmod +x xinitrc
-ln -s xinitrc ~/.xinitrc
+ln -s $PWD/xinitrc ~/.xinitrc
+
+# AUR packages
+paru -Sy $PACKAGES_AUR
