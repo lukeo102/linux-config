@@ -83,21 +83,20 @@ cd ../dmenu
 sudo make clean install
 
 # dotfiles
-cd ../../dotfiles
-PWD=$(pwd)
+DOTFILES=$LOCATION/env/dotfiles
 
-ln -s $PWD/zsh/.oh-my-zsh ~/
-ln -s $PWD/zsh/.zshrc ~/
+ln -s $DOTFILES/zsh/.oh-my-zsh ~/
+ln -s $DOTFILES/zsh/.zshrc ~/
 sudo chshell -s $(which zsh) luke
 
 AUTOSTART_LOCATION="$HOME/.local/share/dwm/"
 mkdir -p $AUTOSTART_LOCATION
-ln -s $PWD/autostart.sh $AUTOSTART_LOCATION
+ln -s $DOTFILES/autostart.sh $AUTOSTART_LOCATION
 
-ln -s $PWD/nvim ~/.config/nvim
+ln -s $DOTFILES/nvim ~/.config/nvim
 
 chmod +x xinitrc
-ln -s $PWD/xinitrc ~/.xinitrc
+ln -s $DOTFILES/xinitrc ~/.xinitrc
 
 # AUR packages
 paru -Sy $PACKAGES_AUR
