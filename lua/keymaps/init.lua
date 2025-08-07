@@ -1,0 +1,6 @@
+require("keymaps.telescope")
+require("keymaps.snacks")
+require("keymaps.buffers")
+require("keymaps.persistence")
+require("keymaps.treesitter")
+require("keymaps.misc")
