@@ -1,4 +1,5 @@
 require("keymaps.telescope")
+require("keymaps.grapple")
 require("keymaps.snacks")
 require("keymaps.buffers")
 require("keymaps.persistence")

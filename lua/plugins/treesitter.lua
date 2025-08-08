@@ -111,4 +111,30 @@ return {
             )
         end
     },
+    {
+        "nvim-treesitter/nvim-treesitter-refactor",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        config = function ()
+        require'nvim-treesitter.configs'.setup {
+          refactor = {
+            smart_rename = {
+                  enable = true,
+                  keymaps = {
+                    smart_rename = "<leader>cr",
+                  },
+            },
+            -- navigation = {
+            --   enable = true,
+            --   keymaps = {
+            --     goto_definition = "<leader>cfd",
+            --     list_definitions = "<leader>cfl",
+            --     list_definitions_toc = "<leader>cfq",
+            --     goto_next_usage = "<leader>cfk",
+            --     goto_previous_usage = "<leader>cfj",
+            --   },
+            -- },
+          },
+        }
+        end
+    }
 }

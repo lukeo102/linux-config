@@ -1,5 +1,14 @@
 local util = require("keymaps.util")
 
+-- Code
+util.map("n", "<leader>cd", "<C-w>d", {desc = "Code diagnostics"})
+util.map("n", "<leader>cs", function () return vim.lsp.buf.definition() end, {desc = "Goto definiton"})
+util.map("n", "<leader>ci", function () return vim.lsp.buf.hover() end, {desc = "Information under cursor"})
+util.map("n", "<leader>ca", function () return vim.lsp.buf.code_action end, {desc = "Code actions"})
+util.map("n", "<leader>cr", function () return vim.lsp.buf.rename end, {desc = "Rename symbol"})
+util.map("n", "<C-k>", function () return require("snacks").words.jump(vim.v.count1) end, {desc = "Next reference"})
+util.map("n", "<C-j>", function () return require("snacks").words.jump(-vim.v.count1) end, {desc = "Previous reference"})
+
 -- Keep visual mode after [un]indent
 util.map("v", ">", ">gv", {})
 util.map("v", "<", "<gv", {})
