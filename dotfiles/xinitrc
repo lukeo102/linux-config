@@ -34,4 +34,4 @@ gpu-screen-recorder -w DP-4 -c mp4 -q very_high -k auto -ac opus -f 60 -cursor y
 # Desktop stuff
 feh --bg-fill --randomize $HOME/.local/installs/dwm/backgrounds/ &
 slstatus &
-exec dwm
+exec /usr/local/bin/dwm
