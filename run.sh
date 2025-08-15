@@ -23,6 +23,10 @@ if [ "$1" != "root-done" ]; then
     # enable multilib
     sed -i "/\[multilib\]/,/Include/"'s/^#//' /etc/pacman.conf
 
+    # set parallel downloads
+    sed -E -i "/ParallelDownloads = [0-9]+/"'s/[0-9]+/10/' /etc/pacman.conf
+    sed -E -i "/ParallelDownloads = [0-9]+/"'s/^#//' /etc/pacman.conf
+
     # disable mouse acceleration
     cp $LOCATION/env/dotfiles/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
 
