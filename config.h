@@ -43,6 +43,7 @@ static const Rule rules[] = {
   { "discord",  "discord",  NULL,       1,            0,            1 }, 
   { "steam",    NULL,       NULL,       1 << 4,       0,            0 },
   { "tidal-hifi", NULL,     NULL,       1 << 1,       0,           -1 },
+  { "Lutris",   "net.lutris.Lutris", NULL, 1 << 5,    0,            0 },
 };
 
 /* layout(s) */
