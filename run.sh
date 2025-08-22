@@ -27,9 +27,6 @@ if [ "$1" != "root-done" ]; then
     sed -E -i "/ParallelDownloads = [0-9]+/"'s/[0-9]+/10/' /etc/pacman.conf
     sed -E -i "/ParallelDownloads = [0-9]+/"'s/^#//' /etc/pacman.conf
 
-    # disable mouse acceleration
-    cp $LOCATION/env/dotfiles/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
-
     # packages
     $PACMAN
 
@@ -66,6 +63,12 @@ git clone --recurse-submodules -j4 --depth 1 -b main https://github.com/lukeo102
 cd env
 git submodule update --init
 
+# disable mouse acceleration
+cp $LOCATION/env/dotfiles/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
+
+sudo rm /etc/X11/xorg.conf.d/00-keyboard.conf
+cp $LOCATION/env/dotfiles/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
+
 # autologin
 sudo systemctl enable greetd
 sudo rm /etc/greetd/config.toml
@@ -79,7 +82,7 @@ systemctl --user enable wireplumber
 cd programs
 
 cd paru
-makepkg -si --no-confirm
+sudo makepkg -si
 
 cd ../dwm
 sudo make clean install
