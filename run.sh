@@ -64,6 +64,7 @@ cd $LOCATION
 rm -rf ./env
 git clone --recurse-submodules -j4 --depth 1 -b main https://github.com/lukeo102/linux-config.git env
 cd env
+git submodule update --init
 
 # autologin
 sudo systemctl enable greetd
