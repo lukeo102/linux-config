@@ -10,7 +10,7 @@ PACKAGES_DRIVERS="nvidia-open-dkms mesa vulkan-icd-loader xf86-video-vesa"
 PACKAGES_WIRELESS="bluez bluez-libs blueberry iwd"
 PACKAGES_AUDIO="pipewire pipewire-pulse pipewire-jack pipewire-alsa pipewire-audio wireplumber libwireplumber pavucontrol easyeffects"
 PACKAGES_GAMES="steam lutris discord"
-PACKAGES_MISC="feh picom"
+PACKAGES_MISC="feh picom clipcat"
 PACKAGES_AUR="zenergy-dkms-git"
 PACKAGES="$PACKAGES_BASE $PACKAGES_DRIVERS $PACKAGES_WIRELESS $PACKAGES_AUDIO $PACKAGES_GAMES $PACKAGES_MISC"
 
