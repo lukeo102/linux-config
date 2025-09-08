@@ -12,3 +12,5 @@ static const char *audio_play[] = {"playerctl", "play-pause", NULL};
 static const char *audio_next[] = {"playerctl", "next", NULL};
 static const char *audio_prev[] = {"playerctl", "previous", NULL};
 static const char *save_replay[] = {"replay", NULL};
+static const char *clipboard_menu[] = {"clipcat-menu", "-f", "dmenu", NULL};
+
