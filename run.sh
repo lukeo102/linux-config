@@ -11,7 +11,7 @@ PACKAGES_WIRELESS="bluez bluez-libs blueberry iwd"
 PACKAGES_AUDIO="pipewire pipewire-pulse pipewire-jack pipewire-alsa pipewire-audio wireplumber libwireplumber pavucontrol easyeffects"
 PACKAGES_GAMES="steam lutris discord"
 PACKAGES_MISC="feh picom clipcat flameshot"
-PACKAGES_AUR="zenergy-dkms-git"
+PACKAGES_AUR="zenergy-dkms-git tidal-hifi-appimage"
 PACKAGES="$PACKAGES_BASE $PACKAGES_DRIVERS $PACKAGES_WIRELESS $PACKAGES_AUDIO $PACKAGES_GAMES $PACKAGES_MISC"
 
 PACMAN="pacman -Sy --noconfirm --needed $PACKAGES"
@@ -112,4 +112,4 @@ chmod +x $DOTFILES/xinitrc
 ln -s $DOTFILES/xinitrc ~/.xinitrc
 
 # AUR packages
-paru -Sy $PACKAGES_AUR
+paru -Sy --noconfirm $PACKAGES_AUR
