@@ -7,7 +7,7 @@
 clipcatd
 
 # Screenshots
-flameshot &
+flameshot >/dev/null &
 
 # Gaming optimisations
 export LD_BIND_NOW=1
