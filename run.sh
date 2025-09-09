@@ -82,6 +82,7 @@ systemctl --user enable wireplumber
 cd programs
 
 cd paru
+git reset --hard
 sudo makepkg -si
 
 cd ../dwm
