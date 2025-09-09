@@ -83,7 +83,7 @@ cd programs
 
 cd paru
 git reset --hard
-sudo makepkg -si
+makepkg -si
 
 cd ../dwm
 sudo make clean install
