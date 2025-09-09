@@ -6,6 +6,9 @@
 # Notifications
 clipcatd
 
+# Screenshots
+flameshot &
+
 # Gaming optimisations
 export LD_BIND_NOW=1
 
