@@ -66,6 +66,7 @@ git submodule update --init
 # disable mouse acceleration
 cp $LOCATION/env/dotfiles/40-libinput.conf /etc/X11/xorg.conf.d/40-libinput.conf
 
+# keyboard setup
 sudo rm /etc/X11/xorg.conf.d/00-keyboard.conf
 cp $LOCATION/env/dotfiles/00-keyboard.conf /etc/X11/xorg.conf.d/00-keyboard.conf
 
@@ -97,17 +98,21 @@ sudo make clean install
 # dotfiles
 DOTFILES=$LOCATION/env/dotfiles
 
+# picom
+PICOM_CONF_LOCATION="/home/$USER/.config/picom"
+mkdir -p $PICOM_CONF_LOCATION
+cp $LOCATION/env/dotfiles/picom.conf $PICOM_CONF_LOCATION
+
+# zsh
 ln -s $DOTFILES/zsh/.oh-my-zsh ~/
 ln -s $DOTFILES/zsh/.zshrc ~/
 sudo chsh -s $(which zsh) $USER
 
-AUTOSTART_LOCATION="$HOME/.local/share/dwm/"
-mkdir -p $AUTOSTART_LOCATION
-ln -s $DOTFILES/autostart.sh $AUTOSTART_LOCATION
-
+# neovim
 mkdir -p ~/.config
 ln -s $DOTFILES/nvim ~/.config/nvim
 
+# xinitrc
 chmod +x $DOTFILES/xinitrc
 ln -s $DOTFILES/xinitrc ~/.xinitrc
 

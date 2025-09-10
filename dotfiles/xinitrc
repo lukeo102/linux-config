@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Make DBUS applicaitons pass $DISPLAY
 /etc/X11/xinit/xinitrc.d/50-systemd-user.sh
@@ -15,9 +15,6 @@ export LD_BIND_NOW=1
 # Easyeffects - noise suppression system wide
 easyeffects --gapplication-service &
 
-# Picom - X11 compositor
-picom &
-
 # SSH
 if ! pgrep -u "$USER" ssh-agent >/dev/null; then
   ssh-agent -t 1h >"$XDG_RUNTIME_DIR/ssh-agent.env"
@@ -32,7 +29,12 @@ ssh-add /home/luke/.ssh/id_rsa
 export EDITOR="nvim" &
 
 # Display
-xrandr --output HDMI-0 --mode 2560x1440 --pos 0x0 --rotate inverted --output DP-0 --off --output DP-1 --off --output DP-4 --primary --mode 2560x1440 --pos 0x1440 --rotate normal --output DP-3 --off --output DP-5 --off --output DP-4 --off &
+XRANDR_SETUP_LOCATION=~/.screenlayout/default.sh
+if [ -e "$XRANDR_SETUP_LOCATION" ]; then
+  $XRANDR_SETUP_LOCATION
+else
+  xrandr --listactivemonitors | sed -rn 's/.*  ([A-Za-z]+-[0-9]+)$/\1/p' | xargs -I % sh -c 'xrandr --output % --rotate normal --mode 1920x1080 --pos 0x0'
+fi
 xset -dpms
 xset s off
 xrdb -merge $HOME/.Xresources
@@ -41,6 +43,7 @@ xrdb -merge $HOME/.Xresources
 gpu-screen-recorder -w DP-4 -c mp4 -q very_high -k auto -ac opus -f 60 -cursor yes -cr full -r 1200 -o /home/luke/Videos -a alsa_output.pci-0000_0c_00.3.analog-stereo.monitor | alsa_input.usb-0c76_USB_Headphone_Set-00.mono-fallback &
 
 # Desktop stuff
-feh --bg-fill --randomize $HOME/.local/installs/dwm/backgrounds/ &
 slstatus &
+picom &
+feh --bg-fill --randomize $HOME/.local/installs/dwm/backgrounds/ &
 exec /usr/local/bin/dwm
